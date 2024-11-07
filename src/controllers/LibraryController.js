@@ -43,13 +43,18 @@ export class LibraryController {
     showAlert("warning", "Buku berhasil dihapus!");
   }
 
-  saveAndRender() {
+  saveAndRender(filteredBooks = null) {
     localStorage.setItem("books", JSON.stringify(this.books));
     this.bookList.render(
-      this.books,
+      filteredBooks || this.books,
       this.deleteBook.bind(this),
       this.editBook.bind(this)
     );
+  }
+
+  filterByYear(year) {
+    const filteredBooks = this.books.filter((book) => book.year === parseInt(year));
+    this.saveAndRender(filteredBooks);
   }
 
   toggleTheme() {

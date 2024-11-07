@@ -13,6 +13,16 @@ bookList.render(
   libraryController.editBook.bind(libraryController)
 );
 
+// Fungsi untuk menangani filter tahun
+window.applyYearFilter = function () {
+    const year = document.getElementById("filter-year").value;
+    if (year) {
+      libraryController.filterByYear(year);
+    } else {
+      libraryController.saveAndRender();
+    }
+  };
+  
 document
 .getElementById("theme-toggle")
 .addEventListener(
